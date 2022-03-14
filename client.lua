@@ -3,14 +3,14 @@ local nbrDisplaying = 1
 local staff = false
 ESX = nil
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while ESX == nil do
         TriggerEvent(Config.GetSharedObject, function(obj) ESX = obj end)
-        Citizen.Wait(0)
+        Wait(0)
     end
 
     while ESX.GetPlayerData().job == nil do
-        Citizen.Wait(10)
+        Wait(10)
     end
     PlayerData = ESX.GetPlayerData()
 end)
@@ -171,7 +171,7 @@ RegisterCommand(Config.CoinCMD, function(source, args, rawCommand)
     elseif luck == 1 then
         ExecuteCommand(Config.DoCMD.." ".._U('coin_3'))
     else
-        Citizen.Wait(5000)
+        Wait(5000)
     end
 end)
 
@@ -239,12 +239,12 @@ end
 function DisplayDo(mePlayer, text, offsetdo)
     local displaying = true
 
-    Citizen.CreateThread(function()
+    CreateThread(function()
         Wait(4000)
         displaying = false
     end)
 	
-    Citizen.CreateThread(function()
+    CreateThread(function()
         nbrDisplaying = nbrDisplaying + 1
         while displaying do
             Wait(0)
@@ -262,12 +262,12 @@ end
 function DisplayDoc(mePlayer, text, offsetdoc)
     local displaying = true
 
-    Citizen.CreateThread(function()
+    CreateThread(function()
         Wait(1900)
         displaying = false
     end)
 	
-    Citizen.CreateThread(function()
+    CreateThread(function()
         nbrDisplaying = nbrDisplaying + 1
         while displaying do
             Wait(0)
@@ -360,12 +360,12 @@ end
 function DisplayTry(mePlayer, text, offsetdo)
     local displaying = true
 
-    Citizen.CreateThread(function()
+    CreateThread(function()
         Wait(4000)
         displaying = false
     end)
 	
-    Citizen.CreateThread(function()
+    CreateThread(function()
         nbrDisplaying = nbrDisplaying + 1
         while displaying do
             Wait(0)
@@ -417,13 +417,13 @@ RegisterNetEvent('gdx_rpchat:ZdeTriggerDisplay')
 AddEventHandler('gdx_rpchat:ZdeTriggerDisplay', function(coords, zprava, delka, source)
     tout = true
 
-    Citizen.CreateThread(function()
+    CreateThread(function()
         Wait(delka)
 		tout = false
 	end)
 
     while tout do 
-        Citizen.Wait(0)
+        Wait(0)
         local ped = PlayerPedId()
         local pedCoords = GetEntityCoords(ped)
         local distance = #(pedCoords - coords)
