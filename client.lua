@@ -171,7 +171,7 @@ RegisterCommand(Config.CoinCMD, function(source, args, rawCommand)
     elseif luck == 1 then
         ExecuteCommand(Config.DoCMD.." ".._U('coin_3'))
     else
-        Citizen.Wait(5000)
+        Wait(5000)
     end
 end)
 
